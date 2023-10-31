@@ -66,18 +66,21 @@ function App() {
     const updatedImages = images.filter((image) => !image.isSelected);
     setImages(updatedImages);
   };
+  const selectedImageCount = images.filter((image) => image.isSelected).length;
 
-  const setFeatureImage = (id) => {
-    const updatedImages = images.map((image) => ({
-      ...image,
-      isFeatured: image.id === id,
-    }));
-    setImages(updatedImages);
-  };
+
+  // const setFeatureImage = (id) => {
+  //   const updatedImages = images.map((image) => ({
+  //     ...image,
+  //     isFeatured: image.id === id,
+  //   }));
+  //   setImages(updatedImages);
+  // };
 
   return (
     <div className="App">
       <h1>Image Gallery</h1>
+      <h2>Selected Image Count: {selectedImageCount}</h2>
       <div className="actions">
         <button className='btn bg-green-400 hover:bg-red-700 px-2 py-1 rounded-lg' onClick={deleteSelectedImages}>Delete Selected</button>
         {/* <button onClick={() => setFeatureImage(images[0].id)}>Set as Feature</button> */}
