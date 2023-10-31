@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './App.css';
 
+import image1 from './images/image-1.webp'
+import image2 from './images/image-2.webp'
+import image3 from './images/image-3.webp'
+
 const initialImages = [
-  { id: '1', url: 'image1.jpg', isFeatured: false },
-  { id: '2', url: 'image2.jpg', isFeatured: false },
-  { id: '3', url: 'image3.jpg', isFeatured: false },
+  { id: '1', url: image1, isFeatured: false },
+  { id: '2', url: image2, isFeatured: false },
+  { id: '3', url: image3, isFeatured: false },
 ];
 
 function App() {
