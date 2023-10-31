@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 import image1 from './images/image-1.webp';
 import image2 from './images/image-2.webp';
@@ -80,18 +82,18 @@ function App() {
   return (
     <div className="App">
       <h1>Image Gallery</h1>
-      <h2>Selected Image Count: {selectedImageCount}</h2>
+    <h2><span className='text-blue-600'> <FontAwesomeIcon icon= {faCheckSquare} /></span> {selectedImageCount} Files Selected</h2>
       <div className="actions">
         <button className='btn bg-green-400 hover:bg-red-700 px-2 py-1 rounded-lg' onClick={deleteSelectedImages}>Delete Selected</button>
         {/* <button onClick={() => setFeatureImage(images[0].id)}>Set as Feature</button> */}
       </div>
-      <div className="image-gallery grid grid-cols-3 gap-5 h-[700px]">
+      <div className="image-gallery grid grid-cols-4 gap-5 h-[700px] gap-y-10 ">
         {images.map((image) => (
           <div
             key={image.id}
             className={`image-item ${image.isFeatured ? 'featured' : ''} ${
               image.isSelected ? 'selected' : ''
-            }  shadow-2xl h-[300px] w-[300px]`}
+            }  shadow-2xl h-[300px] w-[300px] rounded-lg`}
             draggable
             onDragStart={(e) => handleDragStart(e, image.id)}
             onDragEnter={(e) => handleDragEnter(e, image.id)}
@@ -103,7 +105,7 @@ function App() {
               onChange={() => toggleImageSelection(image.id)}
             />
             <div className=''>
-              <img className='bg-slate-500 ' src={image.url} alt={`Image ${image.id}`} />
+              <img className='h-[240px]' src={image.url} alt={`Image ${image.id}`} />
             </div>
             {image.isFeatured && <div className="featured-label">Featured</div>}
           </div>
