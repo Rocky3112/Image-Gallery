@@ -57,7 +57,7 @@ function App() {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="image-gallery"
+              className="image-gallery grid"
             >
               {images.map((image, index) => (
                 <Draggable key={image.id} draggableId={image.id} index={index}>
