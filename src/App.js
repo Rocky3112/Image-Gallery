@@ -79,8 +79,8 @@ function App() {
     <div className="App">
       <h1>Image Gallery</h1>
       <div className="actions">
-        <button onClick={deleteSelectedImages}>Delete Selected</button>
-        <button onClick={() => setFeatureImage(images[0].id)}>Set as Feature</button>
+        <button className='btn bg-green-400 hover:bg-red-700 px-2 py-1 rounded-lg' onClick={deleteSelectedImages}>Delete Selected</button>
+        {/* <button onClick={() => setFeatureImage(images[0].id)}>Set as Feature</button> */}
       </div>
       <div className="image-gallery grid grid-cols-3 gap-5 h-[700px]">
         {images.map((image) => (
