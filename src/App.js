@@ -78,33 +78,35 @@ function App() {
   return (
     <div className="App">
       <h1>Image Gallery</h1>
-      <div className="image-gallery grid grid-cols-3 gap-5 bg-slate-400">
+      <div className="actions">
+        <button onClick={deleteSelectedImages}>Delete Selected</button>
+        <button onClick={() => setFeatureImage(images[0].id)}>Set as Feature</button>
+      </div>
+      <div className="image-gallery grid grid-cols-3 gap-5 h-[700px]">
         {images.map((image) => (
           <div
             key={image.id}
             className={`image-item ${image.isFeatured ? 'featured' : ''} ${
               image.isSelected ? 'selected' : ''
-            }`}
+            }  shadow-2xl h-[300px] w-[300px]`}
             draggable
             onDragStart={(e) => handleDragStart(e, image.id)}
             onDragEnter={(e) => handleDragEnter(e, image.id)}
           >
             <input
+            className=''
               type="checkbox"
               checked={image.isSelected}
               onChange={() => toggleImageSelection(image.id)}
             />
-            <div>
-              <img src={image.url} alt={`Image ${image.id}`} />
+            <div className=''>
+              <img className='bg-slate-500 ' src={image.url} alt={`Image ${image.id}`} />
             </div>
             {image.isFeatured && <div className="featured-label">Featured</div>}
           </div>
         ))}
       </div>
-      <div className="actions">
-        <button onClick={deleteSelectedImages}>Delete Selected</button>
-        <button onClick={() => setFeatureImage(images[0].id)}>Set as Feature</button>
-      </div>
+      
     </div>
   );
 }
