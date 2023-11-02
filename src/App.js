@@ -34,12 +34,12 @@ function App() {
   const [images, setImages] = useState(initialImages);
   const [draggedImage, setDraggedImage] = useState(null);
   const [fileInput, setFileInput] = useState(null);
-
+//------ for index image 0-----
   const handleDragStart = (e, id) => {
     e.preventDefault();
     setDraggedImage(id);
   };
-
+//--------drag images
   const handleDragEnter = (e, id) => {
     e.preventDefault();
     if (draggedImage === null || id === draggedImage) return;
@@ -56,7 +56,7 @@ function App() {
 
     setDraggedImage(null);
   };
-
+//-----toggle image position-----
   const toggleImageSelection = (id) => {
     const updatedImages = images.map((image) => {
       if (image.id === id) {
@@ -66,11 +66,13 @@ function App() {
     });
     setImages(updatedImages);
   };
-
+//-----for delete selected image---
   const deleteSelectedImages = () => {
     const updatedImages = images.filter((image) => !image.isSelected);
     setImages(updatedImages);
   };
+
+  ///----count selected image---
   const selectedImageCount = images.filter((image) => image.isSelected).length;
 
   // const setFeatureImage = (id) => {
