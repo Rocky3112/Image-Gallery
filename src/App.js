@@ -104,13 +104,13 @@ function App() {
             key={image.id}
             className={`image-item ${image.isFeatured ? "featured" : ""} ${
               image.isSelected ? "selected" : ""
-            }  shadow-2xl h-[300px] w-[300px] rounded-lg text-center`}
+            }  shadow-2xl h-[300px] w-[300px] rounded-lg text-center relative`}
             draggable
             onDragStart={(e) => handleDragStart(e, image.id)}
             onDragEnter={(e) => handleDragEnter(e, image.id)}
           >
             <input
-              className=""
+              className="absolute top-0 left-0 m-2"
               type="checkbox"
               checked={image.isSelected}
               onChange={() => toggleImageSelection(image.id)}
