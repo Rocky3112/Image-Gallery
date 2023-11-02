@@ -14,6 +14,7 @@ import image8 from "./images/image-8.webp";
 import image9 from "./images/image-9.webp";
 import image10 from "./images/image-10.jpeg";
 import image11 from "./images/image-11.jpeg";
+import imageUPload from "./images/placeholder.png";
 
 const initialImages = [
   { id: "1", url: image1, isFeatured: false },
@@ -147,8 +148,8 @@ function App() {
             {image.isFeatured && <div className="featured-label">Featured</div>}
           </div>
         ))}
-      </div>
-      <div className="upload-container mt-5 ">
+      
+      <div className="upload-container  h-[186px] w-[186px] border-2 border-dashed rounded-lg p-4 hover:bg-gray-500 transition-colors ease-linear opacity-60 cursor-pointer">
         <label className="upload-label">
           <input
             type="file"
@@ -157,12 +158,14 @@ function App() {
             onChange={handleImageUpload}
             ref={(input) => setFileInput(input)}
             style={{ display: 'none' }}
-            className="h-[186px] w-[186px]"
+            className="h-[18px] w-[18px] cursor-pointer "
           />
-          <span className="btn bg-blue-500 hover:bg-blue-700 px-2 py-1 rounded-lg text-white cursor-pointer">
-            Upload Image
-          </span>
+          <div className="">
+          <img className="h-32 w-40 cursor-pointer" src={imageUPload} alt="" />
+          <h2 className=" text-center cursor-pointer">Add Image</h2>
+          </div>
         </label>
+      </div>
       </div>
     </div>
   );
