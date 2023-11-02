@@ -82,11 +82,14 @@ function App() {
       <h1>Image Gallery</h1>
       <div className=" flex justify-between items-center py-5 px-16">
         <h2>
-          <span className="text-blue-600">
-            {" "}
-            <FontAwesomeIcon icon={faCheckSquare} />
-          </span>{" "}
-          {selectedImageCount} Files Selected
+          {selectedImageCount > 0 && (
+            <span className="text-blue-600 pr-2">
+              <FontAwesomeIcon icon={faCheckSquare} />
+            </span>
+          )}
+          {selectedImageCount > 0 && (
+            `${selectedImageCount}  ${selectedImageCount === 1 ? 'File' : 'Files'} Selected`
+          )}
         </h2>
         <div className="actions">
           <button
@@ -95,16 +98,21 @@ function App() {
           >
             Delete Selected
           </button>
-          {/* <button onClick={() => setFeatureImage(images[0].id)}>Set as Feature</button> */}
         </div>
       </div>
-      <div className="image-gallery grid lg:grid-cols-4 gap-5  gap-y-10 ">
-        {images.map((image) => (
+      <hr />
+      <div className=" grid lg:grid-cols-5 gap-5 pt-5">
+        {images.map((image, index) => (
           <div
             key={image.id}
-            className={`image-item ${image.isFeatured ? "featured" : ""} ${
-              image.isSelected ? "selected" : ""
-            }  shadow-2xl h-[300px] w-[300px] rounded-lg text-center relative`}
+            className={`
+              image-item
+              ${image.isFeatured ? "featured" : ""}
+              ${image.isSelected ? "selected" : ""}
+               h-[186px] w-[186px] rounded-lg text-center relative border-2 
+              ${index === 0 ? 'lg:row-span-2 lg:col-span-2 h-[394px] w-[394px] ' : ''} 
+              
+            `}
             draggable
             onDragStart={(e) => handleDragStart(e, image.id)}
             onDragEnter={(e) => handleDragEnter(e, image.id)}
@@ -115,9 +123,9 @@ function App() {
               checked={image.isSelected}
               onChange={() => toggleImageSelection(image.id)}
             />
-            <div className="flex justify-center items-center">
+            <div className=" w-full">
               <img
-                className="h-[240px] rounded-lg"
+                className="h-full w-full rounded-lg"
                 src={image.url}
                 alt={`Image ${image.id}`}
               />
