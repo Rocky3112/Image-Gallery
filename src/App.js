@@ -36,10 +36,12 @@ function App() {
   const [fileInput, setFileInput] = useState(null);
 
   const handleDragStart = (e, id) => {
+    e.preventDefault();
     setDraggedImage(id);
   };
 
   const handleDragEnter = (e, id) => {
+    e.preventDefault();
     if (draggedImage === null || id === draggedImage) return;
 
     const updatedImages = [...images];
