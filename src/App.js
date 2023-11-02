@@ -32,6 +32,7 @@ const initialImages = [
 function App() {
   const [images, setImages] = useState(initialImages);
   const [draggedImage, setDraggedImage] = useState(null);
+  const [fileInput, setFileInput] = useState(null);
 
   const handleDragStart = (e, id) => {
     setDraggedImage(id);
@@ -77,9 +78,22 @@ function App() {
   //   setImages(updatedImages);
   // };
 
+  //-----------for upload a image----
+  const handleImageUpload = (e) => {
+    const files = e.target.files;
+    const newImages = Array.from(files).map((file, index) => ({
+      id: images.length + index + 1,
+      url: URL.createObjectURL(file),
+      isFeatured: false,
+      isSelected: false,
+    }));
+
+    setImages([...images, ...newImages]);
+  };
+
   return (
     <div className="App p-10">
-      <h1>Image Gallery</h1>
+      <h1 className="text-center text-3xl font-semibold">Image Gallery</h1>
       <div className=" flex justify-between items-center py-5 px-16">
         <h2>
           {selectedImageCount > 0 && (
@@ -123,9 +137,9 @@ function App() {
               checked={image.isSelected}
               onChange={() => toggleImageSelection(image.id)}
             />
-            <div className=" w-full">
+            <div className="">
               <img
-                className="h-full w-full rounded-lg"
+                className=" rounded-lg"
                 src={image.url}
                 alt={`Image ${image.id}`}
               />
@@ -133,6 +147,22 @@ function App() {
             {image.isFeatured && <div className="featured-label">Featured</div>}
           </div>
         ))}
+      </div>
+      <div className="upload-container mt-5 ">
+        <label className="upload-label">
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handleImageUpload}
+            ref={(input) => setFileInput(input)}
+            style={{ display: 'none' }}
+            className="h-[186px] w-[186px]"
+          />
+          <span className="btn bg-blue-500 hover:bg-blue-700 px-2 py-1 rounded-lg text-white cursor-pointer">
+            Upload Image
+          </span>
+        </label>
       </div>
     </div>
   );
