@@ -22,17 +22,17 @@ import ImageUpload from "./ImageUpload";
 import ImageDisplay from "./ImageDisplay";
 
 const initialImages = [
-  { id: "1", url: image1, isFeatured: false },
-  { id: "2", url: image2, isFeatured: false },
-  { id: "3", url: image3, isFeatured: false },
-  { id: "4", url: image4, isFeatured: false },
-  { id: "5", url: image5, isFeatured: false },
-  { id: "6", url: image6, isFeatured: false },
-  { id: "7", url: image7, isFeatured: false },
-  { id: "8", url: image8, isFeatured: false },
-  { id: "9", url: image9, isFeatured: false },
-  { id: "10", url: image10, isFeatured: false },
-  { id: "11", url: image11, isFeatured: false },
+  { id: "1", url: image1},
+  { id: "2", url: image2},
+  { id: "3", url: image3},
+  { id: "4", url: image4},
+  { id: "5", url: image5},
+  { id: "6", url: image6},
+  { id: "7", url: image7},
+  { id: "8", url: image8},
+  { id: "9", url: image9},
+  { id: "10", url: image10},
+  { id: "11", url: image11},
 ];
 
 function Gallery() {
@@ -101,7 +101,7 @@ function Gallery() {
     const newImages = Array.from(files).map((file, index) => ({
       id: images.length + index + 1,
       url: URL.createObjectURL(file),
-      isFeatured: false,
+      
       isSelected: false,
     }));
 
@@ -146,7 +146,7 @@ function Gallery() {
             
             className={`
               image-item
-              ${image.isFeatured ? "featured" : ""}
+              
               h-[340px] w-[320px] lg:h-[186px] lg:w-[186px] rounded-lg text-center relative border-2  
               ${index === 0 ? 'lg:row-span-2 lg:col-span-2 lg:h-[390px] lg:w-[390px]' : ''}
               ${selectedImageIds.includes(image.id) ? ' opacity-40' : ''}

@@ -2,9 +2,9 @@ import React from 'react';
 
 const ImageDisplay = ({image, dragging,draggedIndex,toggleImageSelection}) => {
     return (
-        <div className='group relative  before:absolute before:h-full before:w-full before:rounded-lg before:transition-colors  hover:before:bg-gray-600/70 before:right-0'>
+        <div className='group relative  before:absolute before:h-full before:w-full before:rounded-lg before:transition-colors  hover:before:bg-gray-500/70 before:right-0'>
             {dragging && Number(draggedIndex) === Number(image.id) && (
-              <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center bg-white border-2 border-dashed rounded-lg ">
+              <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center bg-white border-2  rounded-lg ">
                 Drop Here
               </div>
             )}
