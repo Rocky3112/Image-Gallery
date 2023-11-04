@@ -37,7 +37,7 @@ function Gallery() {
   const [dragging, setDragging] = useState(false);
   const [draggedImage, setDraggedImage] = useState(null);
   const [draggedIndex, setDraggedIndex] = useState(null);
-
+//drag start and over
   const handleDragStart = (image) => {
     setDragging(true);
     setDraggedImage(image);
