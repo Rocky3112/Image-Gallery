@@ -16,6 +16,7 @@ import image9 from "../images/image-9.webp";
 import image10 from "../images/image-10.jpeg";
 import image11 from "../images/image-11.jpeg";
 import imageUPload from "../images/placeholder.png";
+import ImageUpload from "./ImageUpload";
 
 const initialImages = [
   { id: "1", url: image1, isFeatured: false },
@@ -131,7 +132,7 @@ function Gallery() {
       </div>
       <hr />
       {/* mapped and displayed all images */}
-      <div className=" grid lg:grid-cols-5 md:grid-cols-2 gap-5 pt-5">
+      <div className=" grid lg:grid-cols-5 md:grid-cols-2 gap-5 pt-5 ">
       
           {images.map((image, index) => (
           <div
@@ -139,8 +140,8 @@ function Gallery() {
             className={`
               image-item
               ${image.isFeatured ? "featured" : ""}
-              h-[340px] w-[335px] lg:h-[186px] lg:w-[186px] rounded-lg text-center relative border-2
-              ${index === 0 ? 'lg:row-span-2 lg:col-span-2 lg:h-[390px] lg:w-[390px]' : ''}
+              h-[340px] w-[335px] lg:h-[186px] lg:w-[186px] rounded-lg text-center relative border-2 
+              
             `}
             draggable
             onDragStart={() => handleDragStart(image)}
@@ -158,6 +159,8 @@ function Gallery() {
               checked={image.isSelected}
               onChange={() => toggleImageSelection(image.id)}
             />
+            {/* gallery */}
+            
             <div className="">
               <img
                 className=" rounded-lg"
@@ -167,9 +170,42 @@ function Gallery() {
             </div>
             {image.isFeatured && <div className="featured-label">Featured</div>}
           </div>
+          // <div
+          //   key={image.id}
+          //   className={`
+          //     image-item
+          //     ${image.isFeatured ? "featured" : ""}
+          //     h-[340px] w-[335px] lg:h-[186px] lg:w-[186px] rounded-lg text-center relative border-2 hover:after:bg-[#828282] 
+          //     ${index === 0 ? 'lg:row-span-2 lg:col-span-2 lg:h-[390px] lg:w-[390px]' : ''}
+          //   `}
+          //   draggable
+          //   onDragStart={() => handleDragStart(image)}
+          //   onDragOver={(e) => handleDragOver(e, image.id)}
+          //   onDrop={handleDrop}
+          // >
+          //   {dragging && Number(draggedIndex) === Number(image.id) && (
+          //     <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center bg-white border-2 border-dashed rounded-lg">
+          //       Drop Here
+          //     </div>
+          //   )}
+          //   <input
+          //     className="absolute top-0 left-0 m-2"
+          //     type="checkbox"
+          //     checked={image.isSelected}
+          //     onChange={() => toggleImageSelection(image.id)}
+          //   />
+          //   <div className="">
+          //     <img
+          //       className=" rounded-lg"
+          //       src={image.url}
+          //       alt="watch"
+          //     />
+          //   </div>
+          //   {image.isFeatured && <div className="featured-label">Featured</div>}
+          // </div>
         ))}
       {/* for Upload file */}
-      <div className="upload-container h-[340px] w-[335px] lg:h-[186px] lg:w-[186px] border-2 border-dashed rounded-lg p-4 hover:bg-gray-500 transition-colors ease-linear opacity-60 cursor-pointer">
+      {/* <div className="upload-container h-[340px] w-[335px] lg:h-[186px] lg:w-[186px] border-2 border-dashed rounded-lg p-4 hover:bg-gray-500 transition-colors ease-linear opacity-60 cursor-pointer">
         <label className="upload-label">
           <input
             type="file"
@@ -185,6 +221,13 @@ function Gallery() {
           <h2 className=" text-xl text-center cursor-pointer">Add Image</h2>
           </div>
         </label>
+      </div> */}
+      <div>
+        <ImageUpload 
+        handleImageUpload= {handleImageUpload}
+        setFileInput ={setFileInput}
+        imageUPload={imageUPload}
+        ></ImageUpload>
       </div>
       </div>
     </div>
