@@ -2,7 +2,7 @@ import React from 'react';
 
 const ImageDisplay = ({image, dragging,draggedIndex,toggleImageSelection}) => {
     return (
-        <div className='group relative  before:absolute before:h-full before:w-full before:rounded-lg before:transition-colors  hover:before:bg-black/50 before:right-0'>
+        <div className='group relative  before:absolute before:h-full before:w-full before:rounded-lg before:transition-colors  hover:before:bg-gray-600/70 before:right-0'>
             {dragging && Number(draggedIndex) === Number(image.id) && (
               <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center bg-white border-2 border-dashed rounded-lg ">
                 Drop Here
@@ -23,7 +23,7 @@ const ImageDisplay = ({image, dragging,draggedIndex,toggleImageSelection}) => {
                 alt="watch"
               />
             </div>
-            {image.isFeatured && <div className="featured-label">Featured</div>}
+            {/* {image.isFeatured && <div className="featured-label">Featured</div>} */}
         </div>
     );
 };

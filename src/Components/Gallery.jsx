@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+
+
 import React, { useState } from "react";
 import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -105,6 +107,9 @@ function Gallery() {
 
     setImages([...images, ...newImages]);
   };
+  const selectedImageIds = images
+  .filter((image) => image.isSelected)
+  .map((image) => image.id);
 
   return (
     <div className="App p-10 lg:w-[1100px] md:w-[800px] lg:mx-auto">
@@ -144,6 +149,8 @@ function Gallery() {
               ${image.isFeatured ? "featured" : ""}
               h-[340px] w-[320px] lg:h-[186px] lg:w-[186px] rounded-lg text-center relative border-2  
               ${index === 0 ? 'lg:row-span-2 lg:col-span-2 lg:h-[390px] lg:w-[390px]' : ''}
+              ${selectedImageIds.includes(image.id) ? ' opacity-40' : ''}
+              ${image.isSelected ? '' : ''}
             `}
             draggable
             onDragStart={() => handleDragStart(image)}
@@ -155,6 +162,7 @@ function Gallery() {
             dragging={dragging}
             draggedIndex={draggedIndex}
             toggleImageSelection={toggleImageSelection}
+            
 
             >
 
