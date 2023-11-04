@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,30 +32,37 @@ const initialImages = [
 ];
 
 function App() {
-  const [images, setImages] = useState(initialImages);
-  const [draggedImage, setDraggedImage] = useState(null);
   const [fileInput, setFileInput] = useState(null);
-//------ for index image 0-----
-  const handleDragStart = (e, id) => {
-    e.preventDefault();
-    setDraggedImage(id);
+  const [images, setImages] = useState(initialImages);
+  const [dragging, setDragging] = useState(false);
+  const [draggedImage, setDraggedImage] = useState(null);
+  const [draggedIndex, setDraggedIndex] = useState(null);
+
+  const handleDragStart = (image) => {
+    setDragging(true);
+    setDraggedImage(image);
   };
-//--------drag images
-  const handleDragEnter = (e, id) => {
+
+  const handleDragOver = (e, id) => {
     e.preventDefault();
-    if (draggedImage === null || id === draggedImage) return;
+    setDraggedIndex(id);
+  };
 
-    const updatedImages = [...images];
-    const draggedIndex = images.findIndex((image) => image.id === draggedImage);
-    const targetIndex = images.findIndex((image) => image.id === id);
+  const handleDrop = () => {
+    setDragging(false);
 
-    if (draggedIndex !== -1 && targetIndex !== -1) {
-      const [draggedImage] = updatedImages.splice(draggedIndex, 1);
+    if (draggedImage) {
+      const updatedImages = images.filter(
+        (image) => image.id !== draggedImage.id
+      );
+
+      const targetIndex = images.findIndex((image) => image.id === draggedIndex);
       updatedImages.splice(targetIndex, 0, draggedImage);
-      setImages(updatedImages);
-    }
 
-    setDraggedImage(null);
+      setImages(updatedImages);
+      setDraggedImage(null);
+      setDraggedIndex(null);
+    }
   };
 //-----toggle image position-----
   const toggleImageSelection = (id) => {
@@ -121,21 +129,26 @@ function App() {
       </div>
       <hr />
       <div className=" grid lg:grid-cols-5 gap-5 pt-5">
-        {images.map((image, index) => (
+      
+          {images.map((image, index) => (
           <div
             key={image.id}
             className={`
               image-item
               ${image.isFeatured ? "featured" : ""}
-              ${image.isSelected ? "selected" : ""}
-               h-[186px] w-[186px] rounded-lg text-center relative border-2 
-              ${index === 0 ? 'lg:row-span-2 lg:col-span-2 h-[394px] w-[394px] ' : ''} 
-              
+               h-[186px] w-[186px] rounded-lg text-center relative border-2
+              ${index === 0 ? 'lg:row-span-2 lg:col-span-2 h-[394px] w-[394px]' : ''}
             `}
             draggable
-            onDragStart={(e) => handleDragStart(e, image.id)}
-            onDragEnter={(e) => handleDragEnter(e, image.id)}
+            onDragStart={() => handleDragStart(image)}
+            onDragOver={(e) => handleDragOver(e, image.id)}
+            onDrop={handleDrop}
           >
+            {dragging && Number(draggedIndex) === Number(image.id) && (
+              <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center bg-white border-2 border-dashed rounded-lg">
+                Drop Here
+              </div>
+            )}
             <input
               className="absolute top-0 left-0 m-2"
               type="checkbox"
@@ -146,7 +159,7 @@ function App() {
               <img
                 className=" rounded-lg"
                 src={image.url}
-                alt={`Image ${image.id}`}
+                alt="watch"
               />
             </div>
             {image.isFeatured && <div className="featured-label">Featured</div>}
