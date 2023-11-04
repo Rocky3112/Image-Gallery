@@ -119,6 +119,7 @@ function Gallery() {
           </h2>
         )
       }
+      {/* Delete Section */}
         <div className="actions">
           <button
             className="btn bg-green-400 hover:bg-red-700 hover:text-white px-2 py-1 rounded-lg"
@@ -129,6 +130,7 @@ function Gallery() {
         </div>
       </div>
       <hr />
+      {/* mapped and displayed all images */}
       <div className=" grid lg:grid-cols-5 md:grid-cols-2 gap-5 pt-5">
       
           {images.map((image, index) => (
@@ -166,7 +168,7 @@ function Gallery() {
             {image.isFeatured && <div className="featured-label">Featured</div>}
           </div>
         ))}
-      
+      {/* for Upload file */}
       <div className="upload-container h-[340px] w-[335px] lg:h-[186px] lg:w-[186px] border-2 border-dashed rounded-lg p-4 hover:bg-gray-500 transition-colors ease-linear opacity-60 cursor-pointer">
         <label className="upload-label">
           <input
