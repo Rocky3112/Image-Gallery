@@ -105,22 +105,23 @@ function Gallery() {
   };
 
   return (
-    <div className="App p-10">
+    <div className="App p-10 lg:w-[1100px] md:w-[800px] lg:mx-auto">
       <h1 className="text-center text-3xl font-semibold">Image Gallery</h1>
-      <div className=" flex justify-between items-center py-5 px-16">
-        <h2>
-          {selectedImageCount > 0 && (
-            <span className="text-blue-600 pr-2">
-              <FontAwesomeIcon icon={faCheckSquare} />
-            </span>
-          )}
-          {selectedImageCount > 0 && (
-            `${selectedImageCount}  ${selectedImageCount === 1 ? 'File' : 'Files'} Selected`
-          )}
-        </h2>
+      <div className=" flex justify-between items-center gap-5 py-4 px-5">
+      
+      {
+        selectedImageCount === 0 ? (
+          <h2 className=" text-2xl font-semibold">Gallery</h2>
+        ) :
+        (
+          <h2 className=" text-lg">
+            {selectedImageCount} {selectedImageCount === 1 ? 'File' : 'Files'} Selected
+          </h2>
+        )
+      }
         <div className="actions">
           <button
-            className="btn bg-green-400 hover:bg-red-700 px-2 py-1 rounded-lg"
+            className="btn bg-green-400 hover:bg-red-700 hover:text-white px-2 py-1 rounded-lg"
             onClick={deleteSelectedImages}
           >
             Delete Selected
@@ -128,7 +129,7 @@ function Gallery() {
         </div>
       </div>
       <hr />
-      <div className=" grid lg:grid-cols-5 gap-5 pt-5">
+      <div className=" grid lg:grid-cols-5 md:grid-cols-2 gap-5 pt-5">
       
           {images.map((image, index) => (
           <div
@@ -136,8 +137,8 @@ function Gallery() {
             className={`
               image-item
               ${image.isFeatured ? "featured" : ""}
-               h-[186px] w-[186px] rounded-lg text-center relative border-2
-              ${index === 0 ? 'lg:row-span-2 lg:col-span-2 h-[394px] w-[394px]' : ''}
+              h-[340px] w-[335px] lg:h-[186px] lg:w-[186px] rounded-lg text-center relative border-2
+              ${index === 0 ? 'lg:row-span-2 lg:col-span-2 lg:h-[390px] lg:w-[390px]' : ''}
             `}
             draggable
             onDragStart={() => handleDragStart(image)}
@@ -166,7 +167,7 @@ function Gallery() {
           </div>
         ))}
       
-      <div className="upload-container  h-[186px] w-[186px] border-2 border-dashed rounded-lg p-4 hover:bg-gray-500 transition-colors ease-linear opacity-60 cursor-pointer">
+      <div className="upload-container h-[340px] w-[335px] lg:h-[186px] lg:w-[186px] border-2 border-dashed rounded-lg p-4 hover:bg-gray-500 transition-colors ease-linear opacity-60 cursor-pointer">
         <label className="upload-label">
           <input
             type="file"
@@ -175,11 +176,11 @@ function Gallery() {
             onChange={handleImageUpload}
             ref={(input) => setFileInput(input)}
             style={{ display: 'none' }}
-            className="h-[18px] w-[18px] cursor-pointer "
+            className=" cursor-pointer "
           />
           <div className="">
-          <img className="h-32 w-40 cursor-pointer" src={imageUPload} alt="" />
-          <h2 className=" text-center cursor-pointer">Add Image</h2>
+          <img className="h-[270px] w-[300px] lg:h-[120px] lg:w-[150px] cursor-pointer" src={imageUPload} alt="" />
+          <h2 className=" text-xl text-center cursor-pointer">Add Image</h2>
           </div>
         </label>
       </div>
