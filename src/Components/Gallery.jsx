@@ -1,21 +1,21 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import "./App.css";
+import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 
-import image1 from "./images/image-1.webp";
-import image2 from "./images/image-2.webp";
-import image3 from "./images/image-3.webp";
-import image4 from "./images/image-4.webp";
-import image5 from "./images/image-5.webp";
-import image6 from "./images/image-6.webp";
-import image7 from "./images/image-7.webp";
-import image8 from "./images/image-8.webp";
-import image9 from "./images/image-9.webp";
-import image10 from "./images/image-10.jpeg";
-import image11 from "./images/image-11.jpeg";
-import imageUPload from "./images/placeholder.png";
+import image1 from "../images/image-1.webp";
+import image2 from "../images/image-2.webp";
+import image3 from "../images/image-3.webp";
+import image4 from "../images/image-4.webp";
+import image5 from "../images/image-5.webp";
+import image6 from "../images/image-6.webp";
+import image7 from "../images/image-7.webp";
+import image8 from "../images/image-8.webp";
+import image9 from "../images/image-9.webp";
+import image10 from "../images/image-10.jpeg";
+import image11 from "../images/image-11.jpeg";
+import imageUPload from "../images/placeholder.png";
 
 const initialImages = [
   { id: "1", url: image1, isFeatured: false },
@@ -31,7 +31,7 @@ const initialImages = [
   { id: "11", url: image11, isFeatured: false },
 ];
 
-function App() {
+function Gallery() {
   const [fileInput, setFileInput] = useState(null);
   const [images, setImages] = useState(initialImages);
   const [dragging, setDragging] = useState(false);
@@ -188,4 +188,4 @@ function App() {
   );
 }
 
-export default App;
+export default Gallery;
