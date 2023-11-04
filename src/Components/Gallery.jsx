@@ -109,7 +109,7 @@ function Gallery() {
   return (
     <div className="App p-10 lg:w-[1100px] md:w-[800px] lg:mx-auto">
       <h1 className="text-center text-3xl font-semibold">Image Gallery</h1>
-      <div className=" flex justify-between items-center gap-5 py-4 px-5">
+      <div className=" flex justify-between items-center gap-5 py-4 px-5 md:px-12">
       
       {
         selectedImageCount === 0 ? (
@@ -142,7 +142,7 @@ function Gallery() {
             className={`
               image-item
               ${image.isFeatured ? "featured" : ""}
-              h-[340px] w-[335px] lg:h-[186px] lg:w-[186px] rounded-lg text-center relative border-2 
+              h-[340px] w-[320px] lg:h-[186px] lg:w-[186px] rounded-lg text-center relative border-2  
               
             `}
             draggable
