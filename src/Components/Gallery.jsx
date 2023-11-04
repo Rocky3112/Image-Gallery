@@ -143,7 +143,7 @@ function Gallery() {
               image-item
               ${image.isFeatured ? "featured" : ""}
               h-[340px] w-[320px] lg:h-[186px] lg:w-[186px] rounded-lg text-center relative border-2  
-              
+              ${index === 0 ? 'lg:row-span-2 lg:col-span-2 lg:h-[390px] lg:w-[390px]' : ''}
             `}
             draggable
             onDragStart={() => handleDragStart(image)}
@@ -160,39 +160,6 @@ function Gallery() {
 
             </ImageDisplay>
           </div>
-          // <div
-          //   key={image.id}
-          //   className={`
-          //     image-item
-          //     ${image.isFeatured ? "featured" : ""}
-          //     h-[340px] w-[335px] lg:h-[186px] lg:w-[186px] rounded-lg text-center relative border-2 hover:after:bg-[#828282] 
-          //     ${index === 0 ? 'lg:row-span-2 lg:col-span-2 lg:h-[390px] lg:w-[390px]' : ''}
-          //   `}
-          //   draggable
-          //   onDragStart={() => handleDragStart(image)}
-          //   onDragOver={(e) => handleDragOver(e, image.id)}
-          //   onDrop={handleDrop}
-          // >
-          //   {dragging && Number(draggedIndex) === Number(image.id) && (
-          //     <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center bg-white border-2 border-dashed rounded-lg">
-          //       Drop Here
-          //     </div>
-          //   )}
-          //   <input
-          //     className="absolute top-0 left-0 m-2"
-          //     type="checkbox"
-          //     checked={image.isSelected}
-          //     onChange={() => toggleImageSelection(image.id)}
-          //   />
-          //   <div className="">
-          //     <img
-          //       className=" rounded-lg"
-          //       src={image.url}
-          //       alt="watch"
-          //     />
-          //   </div>
-          //   {image.isFeatured && <div className="featured-label">Featured</div>}
-          // </div>
         ))}
       <div>
         <ImageUpload 
