@@ -47,7 +47,7 @@ function Gallery() {
     e.preventDefault();
     setDraggedIndex(id);
   };
-
+//for drag and drop
   const handleDrop = () => {
     setDragging(false);
 
@@ -114,7 +114,7 @@ function Gallery() {
           <h2 className=" text-2xl font-semibold">Gallery</h2>
         ) :
         (
-          <h2 className=" text-lg">
+          <h2 className=" text-lg"><span className="text-blue-700"> <FontAwesomeIcon icon={faCheckSquare} /> </span>
             {selectedImageCount} {selectedImageCount === 1 ? 'File' : 'Files'} Selected
           </h2>
         )
