@@ -17,6 +17,7 @@ import image10 from "../images/image-10.jpeg";
 import image11 from "../images/image-11.jpeg";
 import imageUPload from "../images/placeholder.png";
 import ImageUpload from "./ImageUpload";
+import ImageDisplay from "./ImageDisplay";
 
 const initialImages = [
   { id: "1", url: image1, isFeatured: false },
@@ -137,6 +138,7 @@ function Gallery() {
           {images.map((image, index) => (
           <div
             key={image.id}
+            
             className={`
               image-item
               ${image.isFeatured ? "featured" : ""}
@@ -148,27 +150,15 @@ function Gallery() {
             onDragOver={(e) => handleDragOver(e, image.id)}
             onDrop={handleDrop}
           >
-            {dragging && Number(draggedIndex) === Number(image.id) && (
-              <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center bg-white border-2 border-dashed rounded-lg">
-                Drop Here
-              </div>
-            )}
-            <input
-              className="absolute top-0 left-0 m-2"
-              type="checkbox"
-              checked={image.isSelected}
-              onChange={() => toggleImageSelection(image.id)}
-            />
-            {/* gallery */}
-            
-            <div className="">
-              <img
-                className=" rounded-lg"
-                src={image.url}
-                alt="watch"
-              />
-            </div>
-            {image.isFeatured && <div className="featured-label">Featured</div>}
+            <ImageDisplay
+            image={image}
+            dragging={dragging}
+            draggedIndex={draggedIndex}
+            toggleImageSelection={toggleImageSelection}
+
+            >
+
+            </ImageDisplay>
           </div>
           // <div
           //   key={image.id}
@@ -204,24 +194,6 @@ function Gallery() {
           //   {image.isFeatured && <div className="featured-label">Featured</div>}
           // </div>
         ))}
-      {/* for Upload file */}
-      {/* <div className="upload-container h-[340px] w-[335px] lg:h-[186px] lg:w-[186px] border-2 border-dashed rounded-lg p-4 hover:bg-gray-500 transition-colors ease-linear opacity-60 cursor-pointer">
-        <label className="upload-label">
-          <input
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleImageUpload}
-            ref={(input) => setFileInput(input)}
-            style={{ display: 'none' }}
-            className=" cursor-pointer "
-          />
-          <div className="">
-          <img className="h-[270px] w-[300px] lg:h-[120px] lg:w-[150px] cursor-pointer" src={imageUPload} alt="" />
-          <h2 className=" text-xl text-center cursor-pointer">Add Image</h2>
-          </div>
-        </label>
-      </div> */}
       <div>
         <ImageUpload 
         handleImageUpload= {handleImageUpload}
